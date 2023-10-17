@@ -1,29 +1,27 @@
-//package HW16_10;
-//public class BankWithdrawal {
-//    public static int daysToWithdrawAllMoney(int N) {
-//        int days = 0;
-//
-//        while (N > 1) {
-//            int maxDivisor = 1;
-//            for (int i = 2; i <= N; i++) {
-//                if (N % i == 0) {
-//                    maxDivisor = i;
-//                    break;
-//                }
-//            }
-//            N -= maxDivisor;
-//            days++;
-//        }
-//
-//        return days;
-//    }
-//
-//    public static void main(String[] args) {
-//        int N = 21;
-//        int days = daysToWithdrawAllMoney(N);
-//        System.out.println("Для снятия всех денег из банка потребуется " + days + " дней.");
-//    }
-//}
+package HW16_10;
+
+public class BankWithdrawal {
+    public static void main(String[] args) {
+        int N = 21;// наша сумма
+        int days = minDaysToEmptyBank(N);//сколько дней потребуется для полного снятия суммы
+        System.out.println("Для снятия всех денег потребуется " + days + " дней");
+    }
+
+    public static int minDaysToEmptyBank(int N) {
+        int days = 0;
+        while (N > 0) {
+            int maxDivisor = 1;
+            for (int i = 2; i <= N; i++) {  //начинаем с 2 и дальше ищем максимальный делитель
+                if (N % i == 0 && i < N) {
+                    maxDivisor = i;
+                }
+            }
+            N -= maxDivisor;
+            days++;
+        }
+        return days;
+    }
+}
 
 //У вас на банковском счету N долларов.
 //Вы хотите снять все, но банк разрешает снять только сумму, которая является делителем текущей суммы на счету и меньше текущей суммы.
